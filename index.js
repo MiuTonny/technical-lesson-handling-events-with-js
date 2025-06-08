@@ -17,3 +17,35 @@
 // Hint: Use document.addEventListener to listen for "keydown" events
 // Hint: Inside the event listener, call moveDodgerLeft if the left arrow key is pressed
 // Hint: Call moveDodgerRight if the right arrow key is pressed
+
+const dodger = documentsById("dodger");
+
+document.addEventListener("keydown", function (event) {
+    console.log(event.key); // Logs the key pressed
+})
+
+function moveDodgerLeft() {
+    const leftNumbers = dodger.style.left.replace("px", "");
+    const left = parseInt(leftNumbers, 10);
+
+    if (left > 0) {//prevent moving off-screen
+        dodger.style.left = `${left - 10}px`;
+    }
+}
+
+function moveDodgerRight() {
+    const leftNumbers = dodger.style.left.replace("px", ""); 
+    const left = parseInt(leftNumbers, 10);
+
+    if (left < 360) { //prevents off screen
+        dodger.style.left = `${left + 10}px`
+    }
+}
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowLeft") {
+        moveDodgerLeft();
+    } else if (event.key === "ArrowRight") {
+        moveDodgerRight();
+    }
+});
